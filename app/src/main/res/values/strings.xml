@@ -7,4 +7,19 @@
     <string name="login">Login</string>
     <string name="don_t_have_an_account_signup">Don\'t have an account? SignUp.</string>
     <string name="logout">Logout</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="file_description">File Description</string>
+    <string name="choose_file">Choose File</string>
+    <string name="upload">Upload File</string>
+    <string name="selected_pdf">Selected PDF</string>
+    <string name="selected_audio">Selected Audio</string>
+    <string name="selected_document">Selected Document</string>
+    <string name="selected_video">Selected Video</string>
+    <string name="about">About</string>
+    <string name="name">Name</string>
+    <string name="upload_data">Upload Data</string>
+    <string name="profile">Profile</string>
+    <string name="user_name">User Name</string>
+    <string name="loading">Loading…</string>
+    <string name="file_name">File Name</string>
 </resources>

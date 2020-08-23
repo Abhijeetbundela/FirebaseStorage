@@ -7,11 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.firebasestorage.R
 import com.example.firebasestorage.dialog.LoadingDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var mAuth: FirebaseAuth
+    private val mAuth by lazy { FirebaseAuth.getInstance() }
 
     private val loadingDialog by lazy { LoadingDialog().apply { isCancelable = false } }
 
@@ -19,14 +20,12 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        mAuth = FirebaseAuth.getInstance()
-
         sign_up_text_view.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, LoginActivity::class.java))
+            startActivity(Intent(this@LoginActivity, RegistrationActivity::class.java))
         }
 
         if (mAuth.currentUser != null) {
-            startActivity(Intent(applicationContext, HomeActivity::class.java))
+            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             finish()
         }
 
