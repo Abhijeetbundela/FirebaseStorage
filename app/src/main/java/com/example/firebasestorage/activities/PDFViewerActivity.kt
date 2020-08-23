@@ -18,6 +18,8 @@ class PDFViewerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdf_viewer)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         loadingDialog.show(supportFragmentManager, "base_loading_dialog")
 
         val fileName = intent.getStringExtra("FileName")!!
@@ -65,6 +67,11 @@ class PDFViewerActivity : AppCompatActivity() {
             .enableAntialiasing(true)
             .spacing(0)
             .load()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.firebasestorage.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.firebasestorage.R
+import com.example.firebasestorage.activities.FullImageActivity
 import com.example.firebasestorage.dialog.LoadingDialog
 import com.example.firebasestorage.model.Post
 import com.example.firebasestorage.model.User
@@ -137,6 +139,12 @@ class AllPostFragment : Fragment() {
                             .skipMemoryCache(true)
                             .placeholder(R.drawable.default_user)
                             .into(holder.image)
+
+                        holder.image.setOnClickListener {
+                            val intent = Intent(context, FullImageActivity::class.java)
+                            intent.putExtra("profilePhoto", model.file)
+                            startActivity(intent)
+                        }
 
                         holder.fileText.visibility = View.GONE
                     }

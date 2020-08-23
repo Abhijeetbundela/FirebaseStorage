@@ -48,7 +48,7 @@
             android:layout_marginBottom="8dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:src="@drawable/default_user"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/download_post_btn"

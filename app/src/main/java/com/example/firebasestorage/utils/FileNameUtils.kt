@@ -10,8 +10,8 @@ import android.os.Environment
 import android.provider.OpenableColumns
 import android.view.View
 import android.webkit.MimeTypeMap
-import androidx.core.content.ContextCompat.startActivity
 import com.example.firebasestorage.activities.PDFViewerActivity
+import com.example.firebasestorage.activities.PlayAudioActivity
 import com.example.firebasestorage.activities.PlayVideoActivity
 import com.example.firebasestorage.fragment.AllPostFragment
 import com.example.firebasestorage.fragment.PostFragment
@@ -49,31 +49,31 @@ object FileNameUtils {
             "PDF" -> {
                 ref = storageReference.child("postPDFs/${model.downloadFile}")
                 ref!!.downloadUrl.addOnSuccessListener {
-                   downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
+                    downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
                 }
             }
             "DOC" -> {
                 ref = storageReference.child("postDocs/${model.downloadFile}")
                 ref!!.downloadUrl.addOnSuccessListener {
-                   downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
+                    downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
                 }
             }
             "AUDIO" -> {
                 ref = storageReference.child("postAudios/${model.downloadFile}")
                 ref!!.downloadUrl.addOnSuccessListener {
-                   downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
+                    downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
                 }
             }
             "VIDEO" -> {
                 ref = storageReference.child("postVideos/${model.downloadFile}")
                 ref!!.downloadUrl.addOnSuccessListener {
-                   downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
+                    downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
                 }
             }
             "IMAGE" -> {
                 ref = storageReference.child("postImages/${model.downloadFile}")
                 ref!!.downloadUrl.addOnSuccessListener {
-                   downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
+                    downloadUri(context, Environment.DIRECTORY_DOWNLOADS, it, model.fileName)
                 }
             }
         }
@@ -98,7 +98,6 @@ object FileNameUtils {
         when (model.fileType) {
             "PDF" -> {
                 holder.fileText.setOnClickListener {
-
                     val intent = Intent(context, PDFViewerActivity::class.java)
                     intent.putExtra("FileName", model.fileName)
                     intent.putExtra("File", model.file)
@@ -112,7 +111,10 @@ object FileNameUtils {
             }
             "AUDIO" -> {
                 holder.fileText.setOnClickListener {
-
+                    val intent = Intent(context, PlayAudioActivity::class.java)
+                    intent.putExtra("FileName", model.fileName)
+                    intent.putExtra("File", model.file)
+                    context.startActivity(intent)
                 }
             }
             "VIDEO" -> {
@@ -120,11 +122,6 @@ object FileNameUtils {
                     val intent = Intent(context, PlayVideoActivity::class.java)
                     intent.putExtra("url", model.file)
                     context.startActivity(intent)
-                }
-            }
-            "IMAGE" -> {
-                holder.image.setOnClickListener {
-
                 }
             }
         }
@@ -149,7 +146,6 @@ object FileNameUtils {
         when (model.fileType) {
             "PDF" -> {
                 holder.fileText.setOnClickListener {
-
                     val intent = Intent(context, PDFViewerActivity::class.java)
                     intent.putExtra("FileName", model.fileName)
                     intent.putExtra("File", model.file)
@@ -163,7 +159,10 @@ object FileNameUtils {
             }
             "AUDIO" -> {
                 holder.fileText.setOnClickListener {
-
+                    val intent = Intent(context, PlayAudioActivity::class.java)
+                    intent.putExtra("FileName", model.fileName)
+                    intent.putExtra("File", model.file)
+                    context.startActivity(intent)
                 }
             }
             "VIDEO" -> {
@@ -171,11 +170,6 @@ object FileNameUtils {
                     val intent = Intent(context, PlayVideoActivity::class.java)
                     intent.putExtra("url", model.file)
                     context.startActivity(intent)
-                }
-            }
-            "IMAGE" -> {
-                holder.image.setOnClickListener {
-
                 }
             }
         }

@@ -73,6 +73,9 @@ dependencies {
 
     implementation 'com.mindorks.android:prdownloader:0.6.0'
 
-    implementation "com.google.android.exoplayer:exoplayer:2.11.0"
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.0'
+
+    //audio viewer
+    implementation 'com.github.jeancsanchez:JcPlayer:2.6.16'
 
 }

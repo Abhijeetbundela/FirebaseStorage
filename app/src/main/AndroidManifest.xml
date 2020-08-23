@@ -13,10 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.PlayVideoActivity"
+        <activity android:name=".activities.PlayAudioActivity"></activity>
+        <activity android:name=".activities.FullImageActivity" />
+        <activity
+            android:name=".activities.PlayVideoActivity"
             android:configChanges="orientation|screenSize|layoutDirection"
-            android:theme="@style/AppThemeNoActionBar"
-            />
+            android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".activities.PDFViewerActivity" />
         <activity android:name=".activities.UserProfileActivity" />
         <activity android:name=".activities.CreatePostActivity" />
