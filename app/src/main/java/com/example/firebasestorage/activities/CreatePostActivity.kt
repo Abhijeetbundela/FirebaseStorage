@@ -32,6 +32,7 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
     private val DOC: Int = 1
     private val AUDIO: Int = 2
     private val VIDEO: Int = 3
+    private val IMAGE: Int = 4
 
     private var resultData: Uri? = null
 
@@ -87,7 +88,7 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
                 val galleryIntent = Intent()
                 galleryIntent.action = Intent.ACTION_PICK
                 galleryIntent.type = "image/*"
-                startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), 1)
+                startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), IMAGE)
             }
 
             R.id.select_pdf -> {
@@ -280,31 +281,27 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
                 0 -> {
                     fileName = FileNameUtils.fileName(resultData, contentResolver)
                     fileType = "PDF"
-                    selected_pdf.visibility = View.VISIBLE
-                    selected_pdf.text = fileName
+                    enableUI(fileName)
                 }
                 1 -> {
                     fileName = FileNameUtils.fileName(resultData, contentResolver)
                     fileType = "DOC"
-                    selected_document.visibility = View.VISIBLE
-                    selected_document.text = fileName
+                    enableUI(fileName)
                 }
                 2 -> {
                     fileName = FileNameUtils.fileName(resultData, contentResolver)
                     fileType = "AUDIO"
-                    play_audio.visibility = View.VISIBLE
-                    play_audio.text = fileName
+                    enableUI(fileName)
                 }
                 3 -> {
                     fileName = FileNameUtils.fileName(resultData, contentResolver)
                     fileType = "VIDEO"
-                    selected_video.visibility = View.VISIBLE
-                    selected_video.text = fileName
+                    enableUI(fileName)
                 }
             }
         }
 
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+        if (requestCode == IMAGE && resultCode == RESULT_OK) {
             val imageUri = data!!.data
             CropImage.activity(imageUri).setGuidelines(CropImageView.Guidelines.ON)
                 .start(this)
@@ -325,15 +322,14 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
+    private fun enableUI(fileName: String) {
+        created_file.visibility = View.VISIBLE
+        created_file.text = fileName
+    }
+
     private fun refreshUI() {
-
         resultData = null
-
-        selected_pdf.visibility = View.GONE
-        selected_document.visibility = View.GONE
-        selected_video.visibility = View.GONE
         selected_image.visibility = View.GONE
-        play_audio.visibility = View.GONE
     }
 
     private fun disableUI() {
@@ -345,11 +341,7 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
         select_pdf.isEnabled = false
         select_document.isEnabled = false
         upload_btn.isEnabled = false
-        selected_pdf.isEnabled = false
-        selected_document.isEnabled = false
-        selected_video.isEnabled = false
         selected_image.isEnabled = false
-        play_audio.isEnabled = false
     }
 
 }

@@ -1,24 +1,13 @@
 package com.example.firebasestorage.activities
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firebasestorage.R
 import com.example.firebasestorage.dialog.LoadingDialog
-import com.example.firebasestorage.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
-import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_registration.*
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.IOException
 
 class RegistrationActivity : AppCompatActivity() {
 

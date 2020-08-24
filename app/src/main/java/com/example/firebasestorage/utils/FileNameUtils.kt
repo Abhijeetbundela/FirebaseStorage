@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.OpenableColumns
 import android.view.View
 import android.webkit.MimeTypeMap
+import com.example.firebasestorage.activities.DocViewerActivity
 import com.example.firebasestorage.activities.PDFViewerActivity
 import com.example.firebasestorage.activities.PlayAudioActivity
 import com.example.firebasestorage.activities.PlayVideoActivity
@@ -99,29 +100,25 @@ object FileNameUtils {
             "PDF" -> {
                 holder.fileText.setOnClickListener {
                     val intent = Intent(context, PDFViewerActivity::class.java)
-                    intent.putExtra("FileName", model.fileName)
-                    intent.putExtra("File", model.file)
-                    context.startActivity(intent)
+                    intentPost(model.fileName, intent, model.file, context)
                 }
             }
             "DOC" -> {
                 holder.fileText.setOnClickListener {
-
+                    val intent = Intent(context, DocViewerActivity::class.java)
+                    intentPost(model.fileName, intent, model.file, context)
                 }
             }
             "AUDIO" -> {
                 holder.fileText.setOnClickListener {
                     val intent = Intent(context, PlayAudioActivity::class.java)
-                    intent.putExtra("FileName", model.fileName)
-                    intent.putExtra("File", model.file)
-                    context.startActivity(intent)
+                    intentPost(model.fileName, intent, model.file, context)
                 }
             }
             "VIDEO" -> {
                 holder.fileText.setOnClickListener {
                     val intent = Intent(context, PlayVideoActivity::class.java)
-                    intent.putExtra("url", model.file)
-                    context.startActivity(intent)
+                    intentPost(model.fileName, intent, model.file, context)
                 }
             }
         }
@@ -147,33 +144,40 @@ object FileNameUtils {
             "PDF" -> {
                 holder.fileText.setOnClickListener {
                     val intent = Intent(context, PDFViewerActivity::class.java)
-                    intent.putExtra("FileName", model.fileName)
-                    intent.putExtra("File", model.file)
-                    context.startActivity(intent)
+                    intentPost(model.fileName, intent, model.file, context)
                 }
             }
             "DOC" -> {
                 holder.fileText.setOnClickListener {
-
+                    val intent = Intent(context, DocViewerActivity::class.java)
+                    intentPost(model.fileName, intent, model.file, context)
                 }
             }
             "AUDIO" -> {
                 holder.fileText.setOnClickListener {
                     val intent = Intent(context, PlayAudioActivity::class.java)
-                    intent.putExtra("FileName", model.fileName)
-                    intent.putExtra("File", model.file)
-                    context.startActivity(intent)
+                    intentPost(model.fileName, intent, model.file, context)
                 }
             }
             "VIDEO" -> {
                 holder.fileText.setOnClickListener {
                     val intent = Intent(context, PlayVideoActivity::class.java)
-                    intent.putExtra("url", model.file)
-                    context.startActivity(intent)
+                    intentPost(model.fileName, intent, model.file, context)
                 }
             }
         }
 
+    }
+
+    private fun intentPost(
+        fileName: String,
+        intent: Intent,
+        file: String,
+        context: Context
+    ) {
+        intent.putExtra("FileName", fileName)
+        intent.putExtra("File", file)
+        context.startActivity(intent)
     }
 
     private fun downloadUri(

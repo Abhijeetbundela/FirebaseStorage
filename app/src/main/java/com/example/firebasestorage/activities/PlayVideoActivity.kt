@@ -31,7 +31,6 @@ class PlayVideoActivity : AppCompatActivity() {
         if (event!!.keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
             exoPlayer.volume = 1f
             mute_button.setImageResource(R.drawable.ic_volume_up)
-
         }
 
         return super.onKeyUp(keyCode, event)
@@ -75,7 +74,9 @@ class PlayVideoActivity : AppCompatActivity() {
 
         goFullScreen()
 
-        val url = intent.getStringExtra("url")!!
+        val url = intent.getStringExtra("File")!!
+        file_name.text = intent.getStringExtra("FileName")!!
+
         playVideo(url)
 
     }
@@ -112,9 +113,11 @@ class PlayVideoActivity : AppCompatActivity() {
             if (it == View.VISIBLE) {
                 top_layout.visibility = View.VISIBLE
                 mute_button.visibility = View.VISIBLE
+                file_name.visibility = View.VISIBLE
             } else if (it == View.GONE) {
                 top_layout.visibility = View.GONE
                 mute_button.visibility = View.GONE
+                file_name.visibility = View.GONE
             }
 
         }

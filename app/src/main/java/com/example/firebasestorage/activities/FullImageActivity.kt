@@ -11,6 +11,8 @@ class FullImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_full_image)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val profilePhoto = intent.getStringExtra("profilePhoto")!!
 
         if (profilePhoto != "NA") {
@@ -23,5 +25,10 @@ class FullImageActivity : AppCompatActivity() {
             userProfilePhoto.setImageResource(R.drawable.default_user)
         }
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

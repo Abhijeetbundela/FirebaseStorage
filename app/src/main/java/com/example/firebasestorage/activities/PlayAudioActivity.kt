@@ -9,7 +9,7 @@ import com.example.jean.jcplayer.model.JcAudio
 import com.example.jean.jcplayer.view.JcPlayerView
 
 
-class PlayAudioActivity : AppCompatActivity(), JcPlayerManagerListener {
+class PlayAudioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play_audio)
@@ -24,43 +24,12 @@ class PlayAudioActivity : AppCompatActivity(), JcPlayerManagerListener {
         val jcAudios: ArrayList<JcAudio> = ArrayList()
         jcAudios.add(JcAudio.createFromURL(fileName, url))
 
-        jcPlayerView.initPlaylist(jcAudios, this)
+        jcPlayerView.initPlaylist(jcAudios, null)
 
         jcPlayerView.createNotification()
 
         jcPlayerView.createNotification(R.drawable.ic_audio_track_24)
 
-    }
-
-    override fun onCompletedAudio() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onContinueAudio(status: JcStatus) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onJcpError(throwable: Throwable) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onPaused(status: JcStatus) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onPlaying(status: JcStatus) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onPreparedAudio(status: JcStatus) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onStopped(status: JcStatus) {
-    }
-
-    override fun onTimeChanged(status: JcStatus) {
-        TODO("Not yet implemented")
     }
 
     override fun onSupportNavigateUp(): Boolean {
