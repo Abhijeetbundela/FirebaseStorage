@@ -324,6 +324,7 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun enableUI(fileName: String) {
         created_file.visibility = View.VISIBLE
+
         created_file.text = fileName
     }
 
