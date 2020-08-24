@@ -281,22 +281,22 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
                 0 -> {
                     fileName = FileNameUtils.fileName(resultData, contentResolver)
                     fileType = "PDF"
-                    enableUI(fileName)
+                    enableUI(R.drawable.ic_picture_as_pdf, fileName)
                 }
                 1 -> {
                     fileName = FileNameUtils.fileName(resultData, contentResolver)
                     fileType = "DOC"
-                    enableUI(fileName)
+                    enableUI(R.drawable.ic_attach_file_24, fileName)
                 }
                 2 -> {
                     fileName = FileNameUtils.fileName(resultData, contentResolver)
                     fileType = "AUDIO"
-                    enableUI(fileName)
+                    enableUI(R.drawable.ic_audio_track_24, fileName)
                 }
                 3 -> {
                     fileName = FileNameUtils.fileName(resultData, contentResolver)
                     fileType = "VIDEO"
-                    enableUI(fileName)
+                    enableUI(R.drawable.ic_video_24, fileName)
                 }
             }
         }
@@ -322,9 +322,14 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun enableUI(fileName: String) {
+    private fun enableUI(drawable: Int, fileName: String) {
         created_file.visibility = View.VISIBLE
-
+        created_file.setCompoundDrawablesWithIntrinsicBounds(
+            0,
+            drawable,
+            0,
+            0
+        )
         created_file.text = fileName
     }
 
