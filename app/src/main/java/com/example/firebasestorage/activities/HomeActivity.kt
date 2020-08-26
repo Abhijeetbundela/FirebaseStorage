@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.firebasestorage.R
 import com.example.firebasestorage.fragment.AllPostFragment
 import com.example.firebasestorage.fragment.PostFragment
+import com.example.firebasestorage.utils.PreferencesManagement
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -101,8 +102,18 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.log_out -> {
-                startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
+
+                PreferencesManagement.saveUserId(this@HomeActivity, null)
+
                 mAuth.signOut()
+
+                val intent = Intent(Intent(this@HomeActivity, LoginActivity::class.java))
+
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+
+                startActivity(intent)
+
                 true
             }
 

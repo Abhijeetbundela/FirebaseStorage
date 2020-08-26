@@ -6,8 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firebasestorage.R
 import com.example.firebasestorage.dialog.LoadingDialog
+import com.example.firebasestorage.utils.PreferencesManagement
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -24,8 +24,13 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, RegistrationActivity::class.java))
         }
 
-        if (mAuth.currentUser != null) {
+        val userData = PreferencesManagement.getUserId(this)
+
+        if (mAuth.currentUser != null && userData != null) {
             startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+            finish()
+        } else if(mAuth.currentUser != null && userData == null){
+            startActivity(Intent(this@LoginActivity, UserProfileActivity::class.java))
             finish()
         }
 
@@ -67,6 +72,11 @@ class LoginActivity : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
 
             loadingDialog.dismiss()
+
+            PreferencesManagement.saveUserId(
+                this@LoginActivity,
+                mAuth.uid
+            )
 
             val intent = Intent(applicationContext, HomeActivity::class.java)
             intent.flags =

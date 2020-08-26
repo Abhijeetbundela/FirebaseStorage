@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.firebasestorage.R
 import com.example.firebasestorage.dialog.LoadingDialog
 import com.example.firebasestorage.model.User
+import com.example.firebasestorage.utils.PreferencesManagement
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -32,7 +33,7 @@ class UserProfileActivity : AppCompatActivity() {
 
     private val mAuth by lazy { FirebaseAuth.getInstance().currentUser }
 
-    private val userId by lazy { FirebaseAuth.getInstance().uid!! }
+    private val userId by lazy { mAuth!!.uid }
 
     private val database by lazy { FirebaseFirestore.getInstance() }
 
@@ -110,6 +111,12 @@ class UserProfileActivity : AppCompatActivity() {
             .document(userId)
             .set(userObject)
             .addOnSuccessListener {
+
+                PreferencesManagement.saveUserId(
+                    this@UserProfileActivity,
+                    userId
+                )
+
                 val intent =
                     Intent(Intent(this@UserProfileActivity, HomeActivity::class.java))
                 intent.flags =

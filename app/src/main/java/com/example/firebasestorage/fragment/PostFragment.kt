@@ -2,9 +2,7 @@ package com.example.firebasestorage.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -13,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.firebasestorage.R
 import com.example.firebasestorage.activities.FullImageActivity
+import com.example.firebasestorage.activities.UserProfileActivity
 import com.example.firebasestorage.dialog.LoadingDialog
 import com.example.firebasestorage.model.Post
 import com.example.firebasestorage.utils.FileNameUtils
+import com.example.firebasestorage.utils.PreferencesManagement
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -96,15 +96,30 @@ class PostFragment : Fragment() {
 
                 when (model.fileType) {
                     "PDF" -> {
-                        FileNameUtils.setUIPost(R.drawable.ic_picture_as_pdf, holder, model, context!!)
+                        FileNameUtils.setUIPost(
+                            R.drawable.ic_picture_as_pdf,
+                            holder,
+                            model,
+                            context!!
+                        )
                         holder.image.visibility = View.GONE
                     }
                     "DOC" -> {
-                        FileNameUtils.setUIPost(R.drawable.ic_attach_file_24, holder, model, context!!)
+                        FileNameUtils.setUIPost(
+                            R.drawable.ic_attach_file_24,
+                            holder,
+                            model,
+                            context!!
+                        )
                         holder.image.visibility = View.GONE
                     }
                     "AUDIO" -> {
-                        FileNameUtils.setUIPost(R.drawable.ic_audio_track_24, holder, model, context!!)
+                        FileNameUtils.setUIPost(
+                            R.drawable.ic_audio_track_24,
+                            holder,
+                            model,
+                            context!!
+                        )
                         holder.image.visibility = View.GONE
                     }
                     "VIDEO" -> {

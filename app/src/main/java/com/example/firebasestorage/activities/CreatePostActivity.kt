@@ -203,12 +203,11 @@ class CreatePostActivity : AppCompatActivity(), View.OnClickListener {
 
         ref.putFile(resultData!!).addOnCompleteListener { pic ->
             if (pic.isSuccessful) {
+
+                ref.metadata.addOnSuccessListener { download ->
+                    downloadFile = download.name!!
+                }
                 ref.downloadUrl.addOnCompleteListener { picD ->
-
-                    ref.metadata.addOnSuccessListener {
-                        downloadFile = it.name!!
-                    }
-
                     if (picD.isSuccessful) {
                         fileData = picD.result.toString()
                         writePost(description)
